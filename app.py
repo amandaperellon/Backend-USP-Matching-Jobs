@@ -7,7 +7,7 @@ from marshmallow import ValidationError
 
 from server.instance import server
 
-from controllers.user import User
+from controllers.user import User, UserList, Session
 from controllers.course import Course
 from controllers.occupation import Occupation
 
@@ -19,7 +19,10 @@ app = server.app
 def create_tables():
     db.create_all()
 
+
 api.add_resource(User, '/users/<int:id>')
+api.add_resource(UserList, '/users')
+api.add_resource(Session, '/session')
 api.add_resource(Course, '/courses/<int:id>')
 api.add_resource(Occupation, '/occupations/<int:id>')
 

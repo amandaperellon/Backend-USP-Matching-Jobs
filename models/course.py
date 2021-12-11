@@ -5,8 +5,12 @@ class CourseModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(45), nullable=False)
-    description = db.Column(db.String(200))
+    # description = db.Column(db.String(200))
     users = db.relationship("UserModel")
+
+    def __init__(self, name):
+        self.name = name
+        # self.description = description
 
     def json(self):
         return {
@@ -15,7 +19,7 @@ class CourseModel(db.Model):
         }
         
     def __repr__(self):
-        return f'CourseModel(name={self.name}, description={self.description})'
+        return f'CourseModel(name={self.name})'
 
     @classmethod
     def find_by_id(cls, id):

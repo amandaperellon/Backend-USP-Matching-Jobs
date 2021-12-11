@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint
 from flask_restplus import Api
+import uuid
 
 from db import db
 from ma import ma
@@ -14,6 +15,7 @@ class Server():
         self.app.register_blueprint(self.blueprint)
 
         self.app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost/calendario'
+        self.app.config['SECRET_KEY'] = uuid.uuid4().hex
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         self.app.config['PROPAGATE_EXCEPTIONS'] = True
 
