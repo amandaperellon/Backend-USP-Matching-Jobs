@@ -27,8 +27,7 @@ api.add_resource(Course, '/courses/<int:id>')
 api.add_resource(Occupation, '/occupations/<int:id>')
 
 
-
+db.init_app(app)
+ma.init_app(app)
 if __name__ == '__main__':
-    db.init_app(app)
-    ma.init_app(app)
     server.run()
