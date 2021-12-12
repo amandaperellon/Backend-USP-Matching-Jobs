@@ -1,6 +1,8 @@
 from flask import Flask, Blueprint
 from flask_restplus import Api
 from config import database_credetial
+import os
+from dotenv import load_dotenv, find_dotenv
 import uuid
 
 from db import db
@@ -14,8 +16,8 @@ class Server():
         self.blueprint = Blueprint('api', __name__, url_prefix='/api')
         self.api = Api(self.blueprint, doc='/doc', title='Api do app Calendario')
         self.app.register_blueprint(self.blueprint)
-
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = database_credetial
+        load_dotenv(find_dotenv())
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_CREDENTIAL')
         self.app.config['SECRET_KEY'] = uuid.uuid4().hex
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         self.app.config['PROPAGATE_EXCEPTIONS'] = True
