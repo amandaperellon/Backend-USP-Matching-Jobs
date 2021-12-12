@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint
 from flask_restplus import Api
+from config import database_credetial
 import uuid
 
 from db import db
@@ -14,7 +15,7 @@ class Server():
         self.api = Api(self.blueprint, doc='/doc', title='Api do app Calendario')
         self.app.register_blueprint(self.blueprint)
 
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://vvxacmlsyypkxd:4240df5d81fb8c5fff6c0d52babfc7e61a7732d4a885285796f5f9eaa3b269e1@ec2-23-20-124-77.compute-1.amazonaws.com:5432/d5v41thgl6q7nu'
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = database_credetial
         self.app.config['SECRET_KEY'] = uuid.uuid4().hex
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         self.app.config['PROPAGATE_EXCEPTIONS'] = True
