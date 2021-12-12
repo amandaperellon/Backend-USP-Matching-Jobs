@@ -17,7 +17,7 @@ class Server():
         self.api = Api(self.blueprint, doc='/doc', title='Api do app Calendario')
         self.app.register_blueprint(self.blueprint)
         load_dotenv(find_dotenv())
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_CREDENTIAL')
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_CREDENTIAL')
         self.app.config['SECRET_KEY'] = uuid.uuid4().hex
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         self.app.config['PROPAGATE_EXCEPTIONS'] = True
