@@ -1,6 +1,5 @@
 from flask import Flask, Blueprint
 from flask_restplus import Api
-from config import database_credetial
 import os
 from dotenv import load_dotenv, find_dotenv
 import uuid
